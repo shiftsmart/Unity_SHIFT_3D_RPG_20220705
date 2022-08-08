@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 
 
 namespace SHIFT
@@ -18,7 +18,8 @@ namespace SHIFT
     }
 
     [System.Serializable]
-    public class DataDialoge {
+    public class DataDialoge
+    {
         [Header("對話內容")]
         public string CONTENT;
         [Header("對話音效")]

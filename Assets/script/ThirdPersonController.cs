@@ -19,7 +19,7 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 direction;
     private Transform traCamera;
     private string parRun = "Blend";
-            private string parJump = "jump";
+    private string parJump = "jump";
     #region ¨Æ¥ó
     private void Awake()
     {
@@ -45,16 +45,16 @@ public class ThirdPersonController : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
 
 
-        transform.rotation = Quaternion.Lerp(transform.rotation,traCamera.rotation,turn*Time.deltaTime);
-        transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, traCamera.rotation, turn * Time.deltaTime);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         direction.z = v;
         direction.x = h;
 
         direction = transform.TransformDirection(direction);
 
-        controller.Move(direction*speed*Time.deltaTime);
-       
+        controller.Move(direction * speed * Time.deltaTime);
+
 
         float vAxis = Input.GetAxis("Vertical");
         float hAxis = Input.GetAxis("Horizontal");
@@ -67,7 +67,8 @@ public class ThirdPersonController : MonoBehaviour
             ani.SetFloat(parRun, Mathf.Abs(hAxis));
 
         }
-        else {
+        else
+        {
             ani.SetFloat(parRun, 0);
 
         }
@@ -76,10 +77,11 @@ public class ThirdPersonController : MonoBehaviour
     }
     private void Jump()
     {
-        if (controller.isGrounded&&Input.GetKeyDown(KeyCode.Space)) {
+        if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
             ani.SetTrigger(parJump);
             direction.y = jump;
-        
+
         }
         direction.y += Physics.gravity.y * Time.deltaTime;
 
