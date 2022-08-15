@@ -8,7 +8,7 @@ namespace SHIFT
 {
 
 
-    [CreateAssetMenu(menuName = "SHIFT/dataNPC", fileName = "Data NPC")]
+    [CreateAssetMenu(menuName = "SHIFT/dataNPC", fileName = "Data NPC", order = 2)]
     public class dataNPC : ScriptableObject
     {
         [Header("NPC¦WºÙ")]
