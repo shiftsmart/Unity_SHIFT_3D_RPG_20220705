@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127f2f87291361741970c5f621b3aa39, type: 3}
+  m_Name: AttackCovid
+  m_EditorClassIdentifier: 
+  attack: 213
+  attackAreaColor: {r: 1, g: 0, b: 0, a: 0.5}
+  attackAreaSize: {x: 2, y: 2, z: 2}
+  attackAreaOffset: {x: -0.63, y: 0.29, z: 1.24}
+  layerTarget:
+    serializedVersion: 2
+    m_Bits: 64
+  delatAttack: 0.3
+  animationAttack: {fileID: 7400000, guid: 41168f2cb28cd9b42a90510cf32a0271, type: 3}

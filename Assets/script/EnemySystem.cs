@@ -21,10 +21,13 @@ public class EnemySystem : MonoBehaviour
 
     private float timerIdle;
 
+    private EnemyAttack enemyAttack;
+
     private void Awake()
     {
 
         ani = GetComponent<Animator>();
+        enemyAttack = GetComponent<EnemyAttack>();
         nma = GetComponent<NavMeshAgent>();
         nma.speed = dataEnemy.speedWalk;
     }
@@ -34,7 +37,10 @@ public class EnemySystem : MonoBehaviour
         StateMachine();
         CheckerTargetInTrackRange();
     }
-
+    private void OnDisable()
+    {
+        nma.isStopped = true;
+    }
 
     private void StateMachine() {
         switch (stateEnemy)
@@ -98,12 +104,28 @@ public class EnemySystem : MonoBehaviour
         ani.SetBool(parWalk,nma.velocity.magnitude>0.1f);
     }
     private void Track() {
+
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Attack01")) {
+
+            nma.velocity = Vector3.zero;
+        }
+
+
+
         nma.SetDestination(v3TargetPosition);
         ani.SetBool(parWalk,true);
-        if ( Vector3.Distance(transform.position,v3TargetPosition) <=   dataEnemy.rangeAttack) {
+
+        ani.ResetTrigger(parAttack);
+
+        if (Vector3.Distance(transform.position, v3TargetPosition) <= dataEnemy.rangeAttack)
+        {
             stateEnemy = StateEnemy.Attack;
             print("進入攻擊狀態");
-        
+
+        }
+        else {
+
+            timerAttack = dataEnemy.intervalAttack;
         }
 
     }
@@ -125,6 +147,8 @@ public class EnemySystem : MonoBehaviour
 
             ani.SetTrigger(parAttack);
             timerAttack = 0;
+            enemyAttack.StartAttack();
+            stateEnemy = StateEnemy.Track;
         }
 
     }
@@ -132,11 +156,18 @@ public class EnemySystem : MonoBehaviour
     /// 檢查目標是否在追蹤範圍內
     /// </summary>
     private void CheckerTargetInTrackRange() {
-        if (stateEnemy == StateEnemy.Attack) return;
+  
         Collider[] hits = Physics.OverlapSphere(transform.position,dataEnemy.rangeTrack,dataEnemy.layerTarget);
-        if (hits.Length>0) {
+        if (hits.Length > 0)
+        {
             v3TargetPosition = hits[0].transform.position;
+            if (stateEnemy == StateEnemy.Attack) return;
             stateEnemy = StateEnemy.Track;
+        }
+        else {
+
+            stateEnemy = StateEnemy.Wander;
+        
         }
     
     }

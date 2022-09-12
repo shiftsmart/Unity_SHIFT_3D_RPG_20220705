@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884a12f119f3c67438f5636835601630, type: 3}
   m_Name: covid
   m_EditorClassIdentifier: 
-  hp: 1170
+  hp: 406
   attack: 60.5
   rangeTrack: 4.9
   rangeAttack: 0.65
   speedWalk: 4.9
   propblityProp: 0.69
-  goProp: {fileID: 0}
+  goProp: {fileID: 4854340021818889640, guid: fd08737a07a71e24c950ad978ece498a, type: 3}
   timeIdleRange: {x: 1, y: 6}
   layerTarget:
     serializedVersion: 2
